@@ -9,7 +9,15 @@ The goal of this project is to establish a data migration process using Databric
 Simulate Change Data Capture (CDC) tool like Fivetran with Delta Lake Change Data Feed (CDF) feature to make the architecture simpler to implement and the MERGE operation and log versioning of Delta Lake.
 Improve Delta performance by processing only changes following initial MERGE comparison to accelerate and simplify ETL/ELT operations.
 
-### Pre requirement
+## Project Approach:
+1.	Create a database in Delta Lake, Ingest the table into Delta Lake using spark.read.jdbc, which is a Slowly Changing Dimensions (SCD) Type 1 table.
+2.	Create another Delta table, which is a SCD Type 2 table.
+3.	Make some changes in SQL Database.
+4.	use the snapshot to sync it to the SCD Type 1 table in Delta Lake.
+5.	Simulate CDC tool to sync changes made in the SQL Database to the SCD Type1 table in Delta Lake.
+6.	Update SCD Type 2 table using CDF accordingly every time SCD Type 1 table were changed 
+
+### Pre requirement:
 1.	Library
 ```bash
 pip3 install pyodbc
@@ -39,11 +47,3 @@ sudo ACCEPT_EULA=Y apt-get -q -y install msodbcsql17
 ```python
 connection_string = (f"DRIVER={odbcDriver};SERVER={odbcServer};DATABASE={jdbcDatabase};UID={jdbcUsername};PWD={jdbcPassword};""TrustServerCertificate=Yes")
 ```
-
-## Project Approach:
-1.	Create a database in Delta Lake, Ingest the table into Delta Lake using spark.read.jdbc, which is a Slowly Changing Dimensions (SCD) Type 1 table.
-2.	Create another Delta table, which is a SCD Type 2 table.
-3.	Make some changes in SQL Database.
-4.	use the snapshot to sync it to the SCD Type 1 table in Delta Lake.
-5.	Simulate CDC tool to sync changes made in the SQL Database to the SCD Type1 table in Delta Lake.
-6.	Update SCD Type 2 table using CDF accordingly every time SCD Type 1 table were changed 
