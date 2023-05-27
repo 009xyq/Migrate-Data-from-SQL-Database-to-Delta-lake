@@ -6,7 +6,7 @@ As cloud platforms continue to gain widespread traction, an increasing number of
 The goal of this project is to establish a data migration process using Databricks Delta Lake feature, which will process the data from SQL Database to Databricks Delta Lake.
 
 ## Project Technical Overview:
-Simulate Change data capture (CDC) tool like Fivetran with Delta Lake Change Data Feed (CDF) feature to make the architecture simpler to implement and the MERGE operation and log versioning of Delta Lake.
+Simulate Change Data Capture (CDC) tool like Fivetran with Delta Lake Change Data Feed (CDF) feature to make the architecture simpler to implement and the MERGE operation and log versioning of Delta Lake.
 Improve Delta performance by processing only changes following initial MERGE comparison to accelerate and simplify ETL/ELT operations.
 
 ### Pre requirement
